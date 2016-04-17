@@ -36,7 +36,7 @@ package object simplemail {
     def cc(cc: Seq[String])       = message addRecipients (RecipientType.CC, seqToAddresses(cc))
     def bcc(bcc: Seq[String])     = message addRecipients (RecipientType.BCC, seqToAddresses(bcc))
 
-    def from(from : String)       = message setFrom new InternetAddress(from)
+    def from(from : Seq[String])  = message addFrom seqToAddresses(from)
     def subject(subject : String) = message setSubject subject
 
     def content(content : Elem)   = message setContent (content.toString, "text/html")

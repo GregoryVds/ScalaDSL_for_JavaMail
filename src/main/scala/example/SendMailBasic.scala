@@ -7,7 +7,7 @@ object SendMailBasic extends App with SimpleMail {
   cc("leonard@gmail.com")
   bcc("pierre@gmail.com", "thomas@yahoo.com")
 
-  from("jony@gmail.com")
+  from("jony@gmail.com", "marie@gmail.com")
   subject("My first basic email...")
 
   content(
