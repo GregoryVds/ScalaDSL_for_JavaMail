@@ -1,4 +1,6 @@
-package simplemail
+package example
+
+import simplemail._
 
 object SendMailBasic extends App with SimpleMail {
   to("greg@gmail.com")
@@ -17,4 +19,5 @@ object SendMailBasic extends App with SimpleMail {
   )
 
   send
+  println("Sent")
 }

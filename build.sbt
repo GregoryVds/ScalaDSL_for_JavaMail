@@ -1,3 +1,5 @@
+lazy val runSendMailBasic = taskKey[Unit]("Run the sendMailBasic DSL example.")
+
 name := "dsl-project-2016"
 
 version := "1.0"
@@ -8,3 +10,5 @@ libraryDependencies += "javax.mail" % "mail" % "1.4.1"
 libraryDependencies += "org.scala-lang.modules" %% "scala-xml" % "1.0.5"
 
 mainClass in (Compile, run) := Some("example.SendMailExample")
+
+fullRunTask(runSendMailBasic, Compile, "example.SendMailBasic")
