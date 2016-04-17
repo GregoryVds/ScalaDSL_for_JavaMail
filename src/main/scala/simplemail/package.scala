@@ -22,6 +22,7 @@ package object simplemail {
     import javax.mail.Session
     import javax.mail.Message.RecipientType
     import javax.mail.Transport
+    import utils.Utils._
 
     val properties : mutable.Map[String, String] = System.getProperties
 
@@ -31,9 +32,9 @@ package object simplemail {
     val session = Session.getDefaultInstance(properties)
     val message = new javax.mail.internet.MimeMessage(session)
 
-    def to(to : String)           = message addRecipients (RecipientType.TO, to)
-    def cc(cc: String)            = message addRecipients (RecipientType.CC, cc)
-    def bcc(bcc: String)          = message addRecipients (RecipientType.BCC, bcc)
+    def to(to : Seq[String])      = message addRecipients (RecipientType.TO, seqToAddresses(to))
+    def cc(cc: Seq[String])       = message addRecipients (RecipientType.CC, seqToAddresses(cc))
+    def bcc(bcc: Seq[String])     = message addRecipients (RecipientType.BCC, seqToAddresses(bcc))
 
     def from(from : String)       = message setFrom new InternetAddress(from)
     def subject(subject : String) = message setSubject subject
