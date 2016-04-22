@@ -35,10 +35,6 @@ object ReminderImplicitsV2 {
   }
 
   trait implicitReminder {
-    case object Remind
-
-    implicit val reminder : Reminder = new Reminder(1)
-
     implicit def int2ReminderHelper(rep : Rep) : ReminderHelper = new ReminderHelper(rep)
 
     class ReminderHelper(rep : Rep) {
@@ -50,10 +46,5 @@ object ReminderImplicitsV2 {
       }
       def time_per(period: Period) = times_per(period)
     }
-
-    def remind(target: Target) = reminder remind target
-    def each(period: Period)   = reminder each period
-    def to(task: Task)         = reminder to task
-    def at(hour: Hour)         = reminder at hour
   }
 }

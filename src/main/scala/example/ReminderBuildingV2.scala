@@ -7,13 +7,7 @@ import reminders.SharedTypes._
   */
 object ReminderBuildingV2 extends App with implicitReminder {
   // With this second implem, the order does not matter.
-
-  remind(Greg) to "Walk the dog" at 10 each Month
-  each(Month) at 10 remind Greg to "Walk the dog"
-  at(10) each Year remind Leonard to "Walk the dog"
-
-
-  // We should start with a value to avoid parentheses
+  // We should start with a value... How to start with a method? Since as "remind ..."
   // Only good way I found with with the number of repetition
   10 times_per Week remind Greg to "Walk the dog" at 10
   1 time_per Year at 11 remind Greg to "Walk the dog" at 11
