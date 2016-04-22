@@ -4,18 +4,8 @@ package reminders
   * Created by Greg on 22/04/16.
   */
 object ReminderImplicits {
-  abstract class Period
-  case object Week  extends Period
-  case object Day   extends Period
-  case object Month extends Period
-  case object Year  extends Period
+  import SharedTypes._
 
-  abstract class Target(email: String)
-  case object Greg    extends Target("gregory.vanderschueren@gmail.com")
-  case object Leonard extends Target("leonard.julemont@student.uclouvain.be")
-
-  type Task = String
-  type Rep = Int
   type RepWithPeriod = (Rep, Period)
   type RepWithPeriodTarget = (Rep, Period, Target)
   type RepWithPeriodTargetTask = (Rep, Period, Target, Task)
@@ -40,4 +30,5 @@ object ReminderImplicits {
 
   implicit def repWithPeriodTarget2RepWithPeriodTargetTaskHelper(tup: RepWithPeriodTarget) : RepWithPeriodTargetTaskHelper =
     new RepWithPeriodTargetTaskHelper(tup)
+
 }
