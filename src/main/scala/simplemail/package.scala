@@ -14,22 +14,18 @@ package object simplemail {
   }
 
   trait SimpleMail extends ImplicitMimeMessage {
-    implicit val msg : MimeMessage = MimeMessage()
+    implicit val properties : SysProperties = SysProperties()
+    implicit var msg : MimeMessage = null
   }
 
-  class MimeMessage() {
+  class MimeMessage(properties : SysProperties){
     import javax.mail.internet.InternetAddress
-    import javax.mail.Session
+    import javax.mail.{Session, SendFailedException}
     import javax.mail.Message.RecipientType
     import javax.mail.Transport
     import utils.Utils._
 
-    val properties : mutable.Map[String, String] = System.getProperties
-
-    properties("mail.smtp.host") = "localhost"
-    properties("mail.smtp.port") = "1025"
-
-    val session = Session.getDefaultInstance(properties)
+    val session = Session.getDefaultInstance(properties.properties)
     val message = new javax.mail.internet.MimeMessage(session)
 
     def to(to : Seq[String])      = message addRecipients (RecipientType.TO, seqToAddresses(to))
@@ -42,10 +38,59 @@ package object simplemail {
     def content(content : Elem)   = message setContent (content.toString, "text/html")
     def content(content : String) = message setContent (content, "text/html")
 
-    def send : Unit               = Transport send message
+    def send : MimeMessage        = {
+      try{
+        Transport send message
+      } catch {
+        case exc : Exception => println(s"Error : ${exc.getMessage}")
+      }
+
+      this
+    }
+
+    def ifFailure(body: => Unit) = {
+      body
+    }
   }
 
   object MimeMessage {
-    def apply() = new MimeMessage()
+    def apply(properties : SysProperties) = new MimeMessage(properties)
   }
+
+  /* ALTERNATIVE
+  class SysProperties(body: SysProperties => Unit) extends java.util.Properties {
+    val properties : mutable.Map[String, String] = System.getProperties
+
+    def apply() = {
+      body(this)
+      properties
+    }
+
+    def add(keyValue : (String, String)) = properties(keyValue._1) = keyValue._2
+  }
+
+  object SysProperties {
+    def apply(body : SysProperties => Unit) = new SysProperties(body)
+
+    implicit class StringForKey(key: String) {
+      def :: (value : String) : (String, String) = {
+        (key, value)
+      }
+    }
+  }
+  */
+
+  class SysProperties extends java.util.Properties {
+    val properties : mutable.Map[String, String] = System.getProperties
+
+    def apply(body : => Unit) = {
+      body
+      properties
+    }
+  }
+
+  object SysProperties {
+    def apply() = new SysProperties()
+  }
+
 }

@@ -1,7 +1,7 @@
 package utils
 
 import javax.mail.Address
-import javax.mail.internet.InternetAddress
+import javax.mail.internet.{InternetAddress, AddressException}
 import scala.collection.mutable.ListBuffer
 
 object Utils {
@@ -14,7 +14,13 @@ object Utils {
      */
   def seqToAddresses(strings: Seq[String]) : Array[Address] = {
     val addresses : ListBuffer[Address] = ListBuffer()
-    strings.foreach(address => addresses += new InternetAddress(address))
+    strings.foreach(address => {
+      try{
+        addresses += new InternetAddress(address, true)
+      } catch {
+        case exc : AddressException => println(s"Error : The address '$address' is not a valid email address")
+      }
+    })
     addresses.toArray
   }
 

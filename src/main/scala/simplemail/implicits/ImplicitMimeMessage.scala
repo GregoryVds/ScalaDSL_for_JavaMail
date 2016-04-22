@@ -1,6 +1,6 @@
 package simplemail.implicits
 
-import simplemail.MimeMessage
+import simplemail.{MimeMessage, SysProperties}
 import scala.xml.Elem
 
 trait ImplicitMimeMessage {
@@ -15,4 +15,10 @@ trait ImplicitMimeMessage {
   def content(content : String) (implicit msg : MimeMessage) = msg content content
 
   def send                      (implicit msg : MimeMessage) = msg.send
+
+  def add(keyValue : (String, String))(implicit prop: SysProperties) = prop.properties(keyValue._1) = keyValue._2
+
+  implicit class StringForKey(key: String) {
+    def := (value : String) : (String, String) = (key,value)
+  }
 }
