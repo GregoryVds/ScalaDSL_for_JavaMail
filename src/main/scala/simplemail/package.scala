@@ -18,7 +18,6 @@ package object simplemail {
   }
 
   class MimeMessage() {
-    import javax.mail.internet.InternetAddress
     import javax.mail.Session
     import javax.mail.Message.RecipientType
     import javax.mail.Transport
