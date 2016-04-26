@@ -18,9 +18,14 @@ package object simplemail {
     implicit var msg : MimeMessage = null
   }
 
+<<<<<<< HEAD
   class MimeMessage(properties : SysProperties){
     import javax.mail.internet.InternetAddress
     import javax.mail.{Session, SendFailedException}
+=======
+  class MimeMessage() {
+    import javax.mail.Session
+>>>>>>> master
     import javax.mail.Message.RecipientType
     import javax.mail.Transport
     import utils.Utils._
