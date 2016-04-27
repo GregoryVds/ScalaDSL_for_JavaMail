@@ -1,9 +1,13 @@
-package simplemail.implicits
+package builders.implicitBuilder
 
-import simplemail.MimeMessage
 import scala.xml.Elem
 
-trait ImplicitMimeMessage {
+/**
+  * Created by Greg on 27/04/16.
+  */
+trait ImplicitMimeMessageBuilder {
+  implicit val msg : MimeMessage = MimeMessage()
+
   def to(to : String*)            (implicit msg : MimeMessage) = msg to to
   def cc(cc : String*)            (implicit msg : MimeMessage) = msg cc cc
   def bcc(bcc : String*)          (implicit msg : MimeMessage) = msg bcc bcc

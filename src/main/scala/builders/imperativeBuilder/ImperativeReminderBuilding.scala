@@ -1,4 +1,4 @@
-package imperativeReminder
+package builders.imperativeBuilder
 
 /**
   * Created by Greg on 22/04/16.

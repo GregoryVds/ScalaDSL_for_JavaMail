@@ -1,4 +1,4 @@
-package dynamicContact
+package builders.dynamicBuilder
 
 import collection.mutable
 import scala.language.dynamics
@@ -32,10 +32,8 @@ class Contact extends Dynamic {
 }
 
 object Contact extends Dynamic {
-
   def applyDynamic(name: String)(value: String): Contact = {
     val newContact = new Contact()
     newContact.applyDynamic(name)(value)
   }
-
 }

@@ -1,5 +1,6 @@
-package example
-import dynamicContact._
+package example.builders
+
+import builders.dynamicBuilder._
 /**
   * Created by Greg on 27/04/16.
   */

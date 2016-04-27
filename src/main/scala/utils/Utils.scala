@@ -1,11 +1,12 @@
 package utils
 
+import java.util.Properties
 import javax.mail.Address
 import javax.mail.internet.InternetAddress
+import scala.collection.mutable
 import scala.collection.mutable.ListBuffer
 
 object Utils {
-
 
   /** Create an array of InternetAddress from a sequence of strings
      *
@@ -18,4 +19,9 @@ object Utils {
     addresses.toArray
   }
 
+  implicit def map2Properties(map: mutable.Map[String,String]) : java.util.Properties = {
+    val props = new Properties()
+    map foreach { case (key, value) => props put(key, value) }
+    props
+  }
 }

@@ -1,4 +1,4 @@
-package functionalReminder
+package builders.functionalBuilder
 
 /**
   * Created by Greg on 22/04/16.
@@ -9,8 +9,8 @@ package functionalReminder
   * This however has the drawback of imposing the order of method calls.
   */
 
-object functionalReminder extends functionalReminderTypes {
-  import dynamicContact._
+object Reminder extends Types {
+  import builders.dynamicBuilder._
 
   type TimeLapseToHour       = (TimeLapse, Hour)
   type TimeLapseToContact    = (TimeLapse, Hour, Contact)

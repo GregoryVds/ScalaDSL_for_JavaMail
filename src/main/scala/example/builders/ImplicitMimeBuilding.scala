@@ -1,8 +1,7 @@
-package example
+package example.builders
+import builders.implicitBuilder.ImplicitMimeMessageBuilder
 
-import simplemail._
-
-object SendMailBasic extends App with SimpleMail {
+object ImplicitMimeBuilding extends App with ImplicitMimeMessageBuilder {
   to("greg@gmail.com", "jean@hotmail.com")
   cc("leonard@gmail.com")
   bcc("pierre@gmail.com", "thomas@yahoo.com")

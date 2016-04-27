@@ -1,9 +1,9 @@
-package functionalReminder
+package builders.functionalBuilder
 
 /**
   * Created by Greg on 27/04/16.
   */
-trait functionalReminderTypes {
+trait Types {
   type Rep       = Int
   type TimeLapse = Int
   type Task      = String

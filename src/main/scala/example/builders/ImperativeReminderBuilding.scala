@@ -1,6 +1,7 @@
-package example
-import imperativeReminder.ImperativeReminderBuilding.implicitReminder
-import imperativeReminder.SharedTypes._
+package example.builders
+
+import builders.imperativeBuilder.ImperativeReminderBuilding.implicitReminder
+import builders.imperativeBuilder.SharedTypes._
 
 /**
   * Created by Greg on 22/04/16.
