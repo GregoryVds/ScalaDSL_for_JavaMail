@@ -18,20 +18,18 @@ package object simplemail {
     implicit var msg : MimeMessage = null
   }
 
-<<<<<<< HEAD
+
   class MimeMessage(properties : SysProperties){
     import javax.mail.internet.InternetAddress
     import javax.mail.{Session, SendFailedException}
-=======
-  class MimeMessage() {
-    import javax.mail.Session
->>>>>>> master
     import javax.mail.Message.RecipientType
     import javax.mail.Transport
     import utils.Utils._
 
-    val session = Session.getDefaultInstance(properties.properties)
+    val session = createSession(properties)
     val message = new javax.mail.internet.MimeMessage(session)
+
+    def createSession(prop : SysProperties) : Session = Session.getDefaultInstance(prop.properties)
 
     def to(to : Seq[String])      = message addRecipients (RecipientType.TO, seqToAddresses(to))
     def cc(cc: Seq[String])       = message addRecipients (RecipientType.CC, seqToAddresses(cc))
@@ -47,14 +45,10 @@ package object simplemail {
       try{
         Transport send message
       } catch {
+        case exc : javax.mail.AuthenticationFailedException => println("Erro : Authenfication failed")
         case exc : Exception => println(s"Error : ${exc.getMessage}")
       }
-
       this
-    }
-
-    def ifFailure(body: => Unit) = {
-      body
     }
   }
 
@@ -86,7 +80,7 @@ package object simplemail {
   */
 
   class SysProperties extends java.util.Properties {
-    val properties : mutable.Map[String, String] = System.getProperties
+    val properties : mutable.Map[String, String] = new Properties()
 
     def apply(body : => Unit) = {
       body
@@ -96,6 +90,19 @@ package object simplemail {
 
   object SysProperties {
     def apply() = new SysProperties()
+  }
+
+  trait Authentification extends MimeMessage {
+    import javax.mail.{Session, PasswordAuthentication}
+
+    override def createSession(prop : SysProperties) = {
+      Session.getInstance(prop.properties,
+        new javax.mail.Authenticator() {
+          override def getPasswordAuthentication() : PasswordAuthentication = {
+            return new PasswordAuthentication(prop.properties("mail.username"), prop.properties("mail.password"))
+	        }
+        })
+    }
   }
 
 }

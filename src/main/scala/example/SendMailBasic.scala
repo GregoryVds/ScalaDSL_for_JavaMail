@@ -15,12 +15,15 @@ object SendMailBasic extends App with SimpleMail {
   properties {
     add("mail.smtp.host" := "localhost")
     add("mail.smtp.port" := "1025")
+    add("mail.smtp.auth" := "true")
+    add("mail.username" := "test")
+    add("mail.password" := "test")
   }
 
-  msg = MimeMessage(properties)
+  msg = new MimeMessage(properties) with Authentification
 
   //to("greg@gmail.com", "jean@hotmail.com")
-  to("greg@gmail.com", "leo")
+  to("greg@gmail.com")
   //cc("leonard@gmail.com")
   //bcc("pierre@gmail.com", "thomas@yahoo.com")
 
@@ -36,6 +39,6 @@ object SendMailBasic extends App with SimpleMail {
     </html>
   )
 
-  send ifFailure {println("A failure happened")}
+  send
   println("Sent")
 }
