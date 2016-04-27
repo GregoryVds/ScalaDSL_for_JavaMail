@@ -1,4 +1,4 @@
-package contact
+package dynamicContact
 
 import org.scalatest._
 

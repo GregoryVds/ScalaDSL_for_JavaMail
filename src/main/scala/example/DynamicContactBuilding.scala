@@ -1,9 +1,9 @@
 package example
-import contact._
+import dynamicContact._
 /**
   * Created by Greg on 27/04/16.
   */
-object ContactBuilding extends App {
+object DynamicContactBuilding extends App {
 
   val greg = Contact withName "Greg" andDog "Chucky" andAge "25"
   val leo  = Contact withName "Léonard" andAge "21" andCat "Flappy"

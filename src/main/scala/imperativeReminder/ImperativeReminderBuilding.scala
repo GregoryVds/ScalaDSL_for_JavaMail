@@ -1,9 +1,9 @@
-package reminders
+package imperativeReminder
 
 /**
   * Created by Greg on 22/04/16.
   */
-object ReminderImplicitsV2 {
+object ImperativeReminderBuilding {
   import SharedTypes._
 
   class Reminder {

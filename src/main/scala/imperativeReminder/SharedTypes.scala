@@ -1,12 +1,12 @@
-package reminders
+package imperativeReminder
 
 /**
   * Created by Greg on 22/04/16.
   */
 object SharedTypes {
   abstract class Period
-  case object Week  extends Period
   case object Day   extends Period
+  case object Week  extends Period
   case object Month extends Period
   case object Year  extends Period
 
@@ -18,4 +18,5 @@ object SharedTypes {
   type Task = String
   type Hour = Int
   type Rep  = Int
+  type Quantity = Int
 }
