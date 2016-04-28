@@ -1,6 +1,6 @@
 package example.builders
 
-import builders.dynamicBuilder._
+import _root_.builders.dynamicBuilder.Contact
 /**
   * Created by Greg on 27/04/16.
   */

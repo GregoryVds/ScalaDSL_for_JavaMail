@@ -1,13 +1,14 @@
 package example.builders
 
-import builders.functionalBuilder.Reminder
 import builders.dynamicBuilder.Contact
+import builders.functionalBuilder.Reminder
 
 /**
   * Created by Greg on 22/04/16.
   */
 object FunctionalReminderBuilding extends App {
   import Reminder._
+  import utils.Types._
 
   val greg = Contact withName "Greg" andEmail "gregory.vanderschueren@gmail.com"
 

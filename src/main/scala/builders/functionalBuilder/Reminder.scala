@@ -1,5 +1,7 @@
 package builders.functionalBuilder
 
+import utils.Types
+
 /**
   * Created by Greg on 22/04/16.
   * FUNCTIONAL BUILDER:
@@ -9,15 +11,16 @@ package builders.functionalBuilder
   * This however has the drawback of imposing the order of method calls.
   */
 
-object Reminder extends Types {
+object Reminder {
+  import utils.Types._
   import builders.dynamicBuilder._
 
-  type TimeLapseToHour       = (TimeLapse, Hour)
-  type TimeLapseToContact    = (TimeLapse, Hour, Contact)
-  type TimeLapseToTask       = (TimeLapse, Hour, Contact, Task)
-  type TimeLapseToDay        = (TimeLapse, Hour, Contact, Task, Day)
-  type TimeLapseToDayNumber  = (TimeLapse, Hour, Contact, Task, DayNumber)
-  type TimeLapseToMonth      = (TimeLapse, Hour, Contact, Task, DayNumber, Month)
+  type TimeLapseToRunAt      = (TimeLapse, RunAt)
+  type TimeLapseToContact    = (TimeLapse, RunAt, Contact)
+  type TimeLapseToTask       = (TimeLapse, RunAt, Contact, Task)
+  type TimeLapseToDay        = (TimeLapse, RunAt, Contact, Task, Day)
+  type TimeLapseToDayNumber  = (TimeLapse, RunAt, Contact, Task, DayNumber)
+  type TimeLapseToMonth      = (TimeLapse, RunAt, Contact, Task, DayNumber, Month)
 
   class UnsignedTimeLapse(t: TimeLapse) {
     def minutes = t
@@ -26,12 +29,12 @@ object Reminder extends Types {
     def hour    = t * 60
   }
 
-  class AddHour(t: TimeLapse) {
-    def before(hour: Hour) : TimeLapseToHour = (-t, hour)
-    def after(hour: Hour) : TimeLapseToHour  = (+t, hour)
+  class AddRunAt(t: TimeLapse) {
+    def before(hour: RunAt) : TimeLapseToRunAt = (-t, hour)
+    def after(hour: RunAt) : TimeLapseToRunAt  = (+t, hour)
   }
 
-  class AddContact(t: TimeLapseToHour) {
+  class AddContact(t: TimeLapseToRunAt) {
     def remind(contact: Contact) : TimeLapseToContact = (t._1, t._2, contact)
   }
 
@@ -52,14 +55,14 @@ object Reminder extends Types {
   }
 
   implicit def int2UnsignedTimeLapse(int: TimeLapse) : UnsignedTimeLapse                    = new UnsignedTimeLapse(int)
-  implicit def int2TimeLapseToHour(int: TimeLapse) : AddHour                                = new AddHour(int)
-  implicit def timeLapseToHour2TimeLapseToContact(tup: TimeLapseToHour) : AddContact        = new AddContact(tup)
+  implicit def int2TimeLapseToRunAt(int: TimeLapse) : AddRunAt                                = new AddRunAt(int)
+  implicit def timeLapseToRunAt2TimeLapseToContact(tup: TimeLapseToRunAt) : AddContact        = new AddContact(tup)
   implicit def timeLapseToContact2TimeLapseToTask(tup: TimeLapseToContact) : AddTask        = new AddTask(tup)
   implicit def timeLapseToTask2TimeLapseToDay(tup: TimeLapseToTask) : AddDay                = new AddDay(tup)
   implicit def timeLapseToTask2TimeLapseToDayNumber(tup: TimeLapseToTask) : AddDayNumber    = new AddDayNumber(tup)
   implicit def timeLapseToDayNumber2TimeLapseToMonth(tup: TimeLapseToDayNumber) : AddMonth  = new AddMonth(tup)
 
-  def at(hour: Hour) = {
+  def at(hour: RunAt) = {
     0.minute before hour
   }
 }

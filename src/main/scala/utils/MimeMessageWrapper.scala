@@ -12,7 +12,6 @@ import scala.xml.Elem
 class MimeMessageWrapper() {
   import javax.mail.Message.RecipientType
   import javax.mail.{Session, Transport}
-  import utils.Utils._
 
   val properties : mutable.Map[String, String] = System.getProperties
 

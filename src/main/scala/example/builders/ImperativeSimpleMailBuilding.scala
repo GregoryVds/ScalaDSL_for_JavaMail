@@ -1,7 +1,7 @@
 package example.builders
 
-import builders.imperativeBuilder.SimpleMail
 import builders.dynamicBuilder.Contact
+import builders.imperativeBuilder.SimpleMail
 
 /**
   * Created by Greg on 22/04/16.

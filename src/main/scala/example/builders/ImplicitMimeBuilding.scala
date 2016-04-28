@@ -1,4 +1,5 @@
 package example.builders
+
 import builders.implicitBuilder.ImplicitMimeMessageBuilder
 
 object ImplicitMimeBuilding extends App with ImplicitMimeMessageBuilder {

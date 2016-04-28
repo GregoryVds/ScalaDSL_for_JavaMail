@@ -1,20 +1,23 @@
-package builders.functionalBuilder
+package utils
 
 /**
   * Created by Greg on 27/04/16.
   */
-trait Types {
+object Types {
   type Rep       = Int
   type TimeLapse = Int
   type Task      = String
-  type Hour      = Int
   type DayNumber = Int
+  type RunAt     = Int
 
   sealed trait RepPeriod
-  case object Day   extends RepPeriod
-  case object Week  extends RepPeriod
-  case object Month extends RepPeriod
-  case object Year  extends RepPeriod
+  case object Second  extends RepPeriod
+  case object Minute  extends RepPeriod
+  case object Hour    extends RepPeriod
+  case object Day     extends RepPeriod
+  case object Week    extends RepPeriod
+  case object Month   extends RepPeriod
+  case object Year    extends RepPeriod
 
   sealed trait Month
   case object January   extends Month
