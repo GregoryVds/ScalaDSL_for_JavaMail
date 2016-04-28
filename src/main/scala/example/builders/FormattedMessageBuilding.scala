@@ -11,10 +11,11 @@ object FormattedMessageBuilding extends App {
 
   formatMessage {contact =>
     SimpleMail to contact from Me withSubject {
-      "Hello "
+      "Hello " + contact("name")
     } withContent {
       <html>
         <body>
+
           Hello there !
         </body>
       </html>

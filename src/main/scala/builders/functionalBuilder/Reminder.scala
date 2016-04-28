@@ -55,8 +55,8 @@ object Reminder {
   }
 
   implicit def int2UnsignedTimeLapse(int: TimeLapse) : UnsignedTimeLapse                    = new UnsignedTimeLapse(int)
-  implicit def int2TimeLapseToRunAt(int: TimeLapse) : AddRunAt                                = new AddRunAt(int)
-  implicit def timeLapseToRunAt2TimeLapseToContact(tup: TimeLapseToRunAt) : AddContact        = new AddContact(tup)
+  implicit def int2TimeLapseToRunAt(int: TimeLapse) : AddRunAt                              = new AddRunAt(int)
+  implicit def timeLapseToRunAt2TimeLapseToContact(tup: TimeLapseToRunAt) : AddContact      = new AddContact(tup)
   implicit def timeLapseToContact2TimeLapseToTask(tup: TimeLapseToContact) : AddTask        = new AddTask(tup)
   implicit def timeLapseToTask2TimeLapseToDay(tup: TimeLapseToTask) : AddDay                = new AddDay(tup)
   implicit def timeLapseToTask2TimeLapseToDayNumber(tup: TimeLapseToTask) : AddDayNumber    = new AddDayNumber(tup)

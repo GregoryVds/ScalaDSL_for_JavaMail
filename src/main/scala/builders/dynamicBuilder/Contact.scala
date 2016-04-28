@@ -29,6 +29,8 @@ class Contact extends Dynamic {
       case e: MatchError => throw new NoSuchMethodException("Use with[PropertyName] to set a property on the client.")
     }
   }
+
+  def apply(prop: String) = values.get(prop).get
 }
 
 object Contact extends Dynamic {
