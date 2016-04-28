@@ -2,7 +2,7 @@ package example.builders
 
 import builders.imperativeBuilder.SimpleMail
 import builders.dynamicBuilder.Contact
-import utils.Utils.formatMessage
+import utils._
 
 object FormattedMessageBuilding extends App {
   val Greg = Contact withName "Greg"    andEmail "gregory.vanderschueren@gmail.com"
