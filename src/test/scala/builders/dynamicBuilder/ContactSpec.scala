@@ -2,8 +2,6 @@ package builders.dynamicBuilder
 
 import org.scalatest._
 
-import scala.util.control.Exception
-
 /**
   * Created by Greg on 27/04/16.
   */
