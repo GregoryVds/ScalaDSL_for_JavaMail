@@ -1,12 +1,10 @@
-import java.util.Properties
 import javax.mail.Address
 import javax.mail.internet.InternetAddress
-
 import scala.collection.mutable
 import scala.collection.mutable.ListBuffer
-import builders.dynamicBuilder.Contact
+import builders._
 
-package object utils {
+package object utils extends Types {
 
   /** Create an array of InternetAddress from a sequence of strings
     *
@@ -19,8 +17,8 @@ package object utils {
     addresses.toArray
   }
 
-  implicit def map2Properties(map: mutable.Map[String,String]) : java.util.Properties = {
-    val props = new Properties()
+  implicit def map2Properties(map: mutable.Map[String, String]) : java.util.Properties = {
+    val props = new java.util.Properties()
     map foreach { case (key, value) => props put(key, value) }
     props
   }
@@ -34,4 +32,6 @@ package object utils {
   implicit class StringForKey(key: String) {
     def := (value : String) : (String, String) = (key,value)
   }
+
+  var defaultProperties = mutable.Map("mail.smtp.host" -> "localhost", "mail.smtp.port" -> "1025")
 }

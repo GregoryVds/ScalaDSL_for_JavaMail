@@ -2,7 +2,7 @@
   * Created by Greg on 28/04/16.
   */
 
-import utils.Types._
+import utils._
 import cronish.dsl._
 
 package object scheduler {

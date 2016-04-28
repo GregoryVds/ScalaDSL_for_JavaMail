@@ -3,7 +3,7 @@ package utils
 /**
   * Created by Greg on 27/04/16.
   */
-object Types {
+trait Types {
   type Task      = String
   type RunTime   = String
   type RunDay    = String

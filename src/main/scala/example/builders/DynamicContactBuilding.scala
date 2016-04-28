@@ -1,9 +1,11 @@
 package example.builders
 
-import _root_.builders.dynamicBuilder.Contact
+import builders._
+
 /**
   * Created by Greg on 27/04/16.
   */
+
 object DynamicContactBuilding extends App {
 
   val greg = Contact withName "Greg" andDog "Chucky" andAge "25"

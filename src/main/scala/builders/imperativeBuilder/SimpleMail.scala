@@ -1,13 +1,14 @@
 package builders.imperativeBuilder
 
-import builders.dynamicBuilder.Contact
-import utils.{MimeMessageWrapper, Properties}
+import builders._
+import utils._
 import scala.xml.Elem
+import scala.collection.mutable
 
 /**
   * Created by Greg on 27/04/16.
   */
-class SimpleMail(properties : Properties)  {
+class SimpleMail(properties : mutable.Map[String, String])  {
   val message = new MimeMessageWrapper(properties)
 
   def to(to: String) = {
@@ -43,23 +44,9 @@ class SimpleMail(properties : Properties)  {
   def withContent(content: String) = {
     message.content(content); this}
 
-  def send = message.send
+  def send() = message.send()
 }
 
 object SimpleMail {
-  def apply(properties : Properties) = new SimpleMail(properties)
-  /*
-  def to(to: String)      = new SimpleMail().to(to)
-  def to(to: Contact)     = new SimpleMail().to(to)
-  def cc(cc: String)      = new SimpleMail().cc(cc)
-  def cc(cc: Contact)     = new SimpleMail().cc(cc)
-  def bcc(bcc: String)    = new SimpleMail().bcc(bcc)
-  def bcc(bcc: Contact)   = new SimpleMail().bcc(bcc)
-  def from(from: String)  = new SimpleMail().from(from)
-  def from(from: Contact) = new SimpleMail().from(from)
-
-  def withSubject(subject: String)  = new SimpleMail().withSubject(subject)
-  def withContent(content: Elem)    = new SimpleMail().withContent(content)
-  def withContent(content: String)  = new SimpleMail().withContent(content)
-  */
+  def apply(properties : mutable.Map[String, String]) = new SimpleMail(properties)
 }

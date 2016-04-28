@@ -1,10 +1,7 @@
 package example.scheduler
 
-import builders.dynamicBuilder.Contact
-import builders.functionalBuilder.Reminder._
-import builders.imperativeBuilder.SimpleMail
+import builders._
 import scheduler._
-import utils.Types.{Second, Day}
 import utils._
 
 /**
@@ -15,16 +12,11 @@ object EveryControlStructure extends App {
   val Leo  = Contact withName "Léonard" andAge "21" andCat "Flappy"
   val Me   = Contact withName "Léonard" andAge "21" andCat "Flappy"
 
-
-
   every(Second) {
-
-    println("Sending secondly reminders...")
-
-    SimpleMail to Leo cc Greg withSubject "Hello Greg" withContent "Hello World!"
+    SimpleMail(defaultProperties) to Leo cc Greg withSubject "Hello Greg" withContent "Hello World!"
 
     formatMessage {contact =>
-      SimpleMail to contact from Me withSubject {
+      SimpleMail(defaultProperties) to contact from Me withSubject {
         "Hello " + contact("name")
       } withContent {
         <html>
@@ -33,11 +25,7 @@ object EveryControlStructure extends App {
             Hello there !
           </body>
         </html>
-      } send
+      } send()
     } to List(Greg, Leo)
-
-
   }
-
-  println("Done")
 }

@@ -8,9 +8,8 @@ import scala.language.dynamics
   */
 
 class Contact extends Dynamic {
-  val regex = "(with|and)(.*)".r
-
-  val values: mutable.Map[String, String] = mutable.Map.empty[String, String]
+  private val regex = "(with|and)(.*)".r
+  private val values: mutable.Map[String, String] = mutable.Map.empty[String, String]
 
   def selectDynamic(name: String): String = {
     values.get(name) match {
