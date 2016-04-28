@@ -12,11 +12,12 @@ object FormattedMessageBuilding extends App {
   val properties = Properties add("mail.smtp.host" := "localhost") add("mail.smtp.port" := "1025")
 
   formatMessage {contact =>
-    SimpleMail(properties) to contact.email from Me withSubject {
-      "Hello "
+    SimpleMail(properties) to contact from Me withSubject {
+      "Hello " + contact("name")
     } withContent {
       <html>
         <body>
+
           Hello there !
         </body>
       </html>

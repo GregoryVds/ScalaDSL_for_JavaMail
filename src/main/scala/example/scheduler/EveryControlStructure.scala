@@ -2,6 +2,7 @@ package example.scheduler
 
 import builders.dynamicBuilder.Contact
 import builders.functionalBuilder.Reminder._
+import builders.imperativeBuilder.SimpleMail
 import scheduler._
 import utils.Types.{Second, Day}
 
@@ -12,10 +13,14 @@ object EveryControlStructure extends App {
   val Greg = Contact withName "Greg" andDog "Chucky" andAge "25"
   val Leo  = Contact withName "Léonard" andAge "21" andCat "Flappy"
 
-  every(Second) {
+  every(Day) {
+
     println("Sending secondly reminders...")
+
     10.minutes before 10 remind Greg to "walk the dog"
     at(10) remind Leo to "brush his teeth"
+
+    SimpleMail to Leo cc Greg withSubject "Hello Greg" withContent "Hello World!"
   }
 
 }
