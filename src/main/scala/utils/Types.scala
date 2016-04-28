@@ -4,18 +4,16 @@ package utils
   * Created by Greg on 27/04/16.
   */
 object Types {
-  type Rep       = Int
-  type TimeLapse = Int
   type Task      = String
-  type DayNumber = Int
-  type RunAt     = Int
+  type RunTime   = String
+  type RunDay    = String
+  type RunMonth  = String
 
   sealed trait RepPeriod
   case object Second  extends RepPeriod
   case object Minute  extends RepPeriod
   case object Hour    extends RepPeriod
   case object Day     extends RepPeriod
-  case object Week    extends RepPeriod
   case object Month   extends RepPeriod
   case object Year    extends RepPeriod
 
@@ -31,6 +29,7 @@ object Types {
   case object October   extends Month
   case object November  extends Month
   case object December  extends Month
+  case object MonthNone extends Month
 
   sealed trait Day
   case object Monday    extends Day
