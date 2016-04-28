@@ -16,7 +16,7 @@ import cronish.dsl._
   * Every.{second, minute, hour}  remind Greg to "Walk the dog"
   * Every.day     remind Greg to "Walk the dog" at "10:00"
   * Every.month   remind Greg to "Walk the dog" at "10:00" on_the "12th"
-  * Every.year    remind Greg to "Walk the dog" at "10:00" on_the "12th" in July
+  * Every.year    remind Greg to "Walk the dog" at "10:00" on_the "12th" of July
   */
 
 trait Reminder {
@@ -27,12 +27,6 @@ trait Reminder {
   type RepPeriodToRunTime   = (RepPeriod, Contact, Task, RunTime)
   type RepPeriodToRunDay    = (RepPeriod, Contact, Task, RunTime, RunDay)
   type RepPeriodToMonth     = (RepPeriod, Contact, Task, RunTime, RunDay, Month)
-
-  implicit def withRepPeriod2Contact(t: RepPeriod): AddContact      = new AddContact(t)
-  implicit def withContactToTask(t: RepPeriodToContact): AddTask    = new AddTask(t)
-  implicit def withTask2RunTime(t: RepPeriodToTask): AddRunTime     = new AddRunTime(t)
-  implicit def withRunTime2RunDay(t: RepPeriodToRunTime): AddRunDay = new AddRunDay(t)
-  implicit def withRunDay2Month(t: RepPeriodToRunDay): AddMonth     = new AddMonth(t)
 
   implicit def RepPeriodToTask2ReminderWrapper(t: RepPeriodToTask): ReminderWrapper       = new ReminderWrapper(t._1, t._2, t._3)
   implicit def RepPeriodToRunTime2ReminderWrapper(t: RepPeriodToRunTime): ReminderWrapper = new ReminderWrapper(t._1, t._2, t._3, t._4)
@@ -51,7 +45,6 @@ trait Reminder {
   // Private Stuff
   case class ReminderWrapper(repPeriod: RepPeriod, contact: Contact, taskString: Task,
                       runTime: RunTime = "", runDay: RunDay = "", runMonth: Month = MonthNone) {
-
     def send() = {
       val mail: SimpleMail = new SimpleMail(utils.defaultProperties) to contact.email withSubject "Reminder" withContent taskString
       var taskDesc = "every " + repPeriod.toString.toLowerCase
@@ -62,11 +55,11 @@ trait Reminder {
     }
   }
 
-  class AddContact(t: RepPeriod) {
+  implicit class AddContact(t: RepPeriod) {
     def remind(contact: Contact): RepPeriodToContact = (t, contact)
   }
 
-  class AddTask(t: RepPeriodToContact) {
+  implicit class AddTask(t: RepPeriodToContact) {
     def to(task: Task): RepPeriodToTask = {
       val newT = (t._1, t._2, task)
       newT._1 match {
@@ -76,7 +69,7 @@ trait Reminder {
     }
   }
 
-  class AddRunTime(t: RepPeriodToTask) {
+  implicit class AddRunTime(t: RepPeriodToTask) {
     def at(time: RunTime): RepPeriodToRunTime = {
       val newT = (t._1, t._2, t._3, time)
       newT._1 match {
@@ -86,7 +79,7 @@ trait Reminder {
     }
   }
 
-  class AddRunDay(t: RepPeriodToRunTime) {
+  implicit class AddRunDay(t: RepPeriodToRunTime) {
     def on_the(day: RunDay): RepPeriodToRunDay = {
       val newT = (t._1, t._2, t._3, t._4, day)
       newT._1 match {
@@ -96,8 +89,8 @@ trait Reminder {
     }
   }
 
-  class AddMonth(t: RepPeriodToRunDay) {
-    def in(month: Month): RepPeriodToMonth = {
+  implicit class AddMonth(t: RepPeriodToRunDay) {
+    def of(month: Month): RepPeriodToMonth = {
       val newT = (t._1, t._2, t._3, t._4, t._5, month)
       newT._1 match {
         case Second | Minute | Hour | Day | Month => invalidCombo

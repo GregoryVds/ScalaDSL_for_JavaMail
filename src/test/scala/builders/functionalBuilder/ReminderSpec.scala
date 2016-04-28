@@ -61,14 +61,14 @@ class ReminderSpec extends FlatSpec with Matchers {
   }
 
   "A RepPeriodToMonth" should "be buildable from a RepPeriodToRunDay" in {
-    Every.year remind Greg to "DoSomething" at "11:00" on_the "12th" in March shouldBe a [RepPeriodToMonth]
+    Every.year remind Greg to "DoSomething" at "11:00" on_the "12th" of March shouldBe a [RepPeriodToMonth]
   }
 
   it should "not be buildable from a RepPeriodToTask with RepPeriod less than year" in {
-    an [NoSuchMethodException] should be thrownBy (Every.month remind Greg to "DoSomething" at "11:00" on_the "12th" in November)
+    an [NoSuchMethodException] should be thrownBy (Every.month remind Greg to "DoSomething" at "11:00" on_the "12th" of November)
   }
 
   it should "be sendable" in {
-    "Every.year remind Greg to \"DoSomething\" at \"11:00\" on_the \"12th\" in March send()" should compile
+    "Every.year remind Greg to \"DoSomething\" at \"11:00\" on_the \"12th\" of March send()" should compile
   }
 }

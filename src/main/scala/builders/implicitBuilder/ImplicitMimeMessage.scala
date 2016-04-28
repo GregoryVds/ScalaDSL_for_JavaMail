@@ -7,7 +7,7 @@ import scala.xml.Elem
   * Created by Greg on 27/04/16.
   */
 
-trait ImplicitMimeMessageBuilder {
+trait ImplicitMimeMessage {
   val prop = defaultProperties
   implicit var msg : MimeMessageWrapper = MimeMessageWrapper(prop)
 

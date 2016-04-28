@@ -1,8 +1,8 @@
 package builders.imperativeBuilder
 
 import builders._
+import utils._
 import org.scalatest.{Matchers, FlatSpec}
-import utils.MimeMessageWrapper
 import org.scalamock.scalatest._
 import scala.xml.Elem
 /**
