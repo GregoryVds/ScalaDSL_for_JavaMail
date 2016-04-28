@@ -1,7 +1,7 @@
 package example.builders
 
 import builders.dynamicBuilder.Contact
-import builders.imperativeBuilder.SimpleMail
+import builders.imperativeBuilder.{SimpleMail, Authentification}
 import utils._
 
 /**
@@ -24,6 +24,8 @@ object ImperativeSimpleMailBuilding extends App {
     </html>
   } send
 
-  val mail = SimpleMail(properties) to Leo cc Greg withSubject "Hello Greg" withContent "Hello World!"
+  val properties2 = Properties add("mail.smtp.host" := "localhost") add("mail.smtp.port" := "1025") add("mail.smtp.auth" := "true") add("mail.username" := "test") add("mail.password" := "test")
+
+  val mail = new SimpleMail(properties2) with Authentification to Leo cc Greg withSubject "Hello Greg" withContent "Hello World!"
   mail.send
 }

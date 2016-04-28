@@ -1,14 +1,16 @@
 package builders.imperativeBuilder
 
 import builders.dynamicBuilder.Contact
-import utils.{MimeMessageWrapper, Properties}
+import utils.{MimeMessageWrapper, Properties, AuthentificationWrapper}
 import scala.xml.Elem
 
 /**
   * Created by Greg on 27/04/16.
   */
 class SimpleMail(properties : Properties)  {
-  val message = new MimeMessageWrapper(properties)
+  val message = createMessage(properties)
+
+  def createMessage(properties : Properties) = new MimeMessageWrapper(properties)
 
   def to(to: String) = {
     message.to(to); this}
@@ -62,4 +64,8 @@ object SimpleMail {
   def withContent(content: Elem)    = new SimpleMail().withContent(content)
   def withContent(content: String)  = new SimpleMail().withContent(content)
   */
+}
+
+trait Authentification extends SimpleMail {
+  override def createMessage(properties : Properties) = new MimeMessageWrapper(properties) with AuthentificationWrapper
 }

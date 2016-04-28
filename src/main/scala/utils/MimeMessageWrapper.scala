@@ -13,7 +13,7 @@ class MimeMessageWrapper(properties : Properties) {
   import javax.mail.Message.RecipientType
   import javax.mail.{Session, Transport}
 
-  val session = Session.getDefaultInstance(properties.properties)
+  val session = createSession(properties)
   val message = new javax.mail.internet.MimeMessage(session)
 
   def to(to : String*)       : Unit = message addRecipients (RecipientType.TO, seqToAddresses(to))
@@ -32,8 +32,23 @@ class MimeMessageWrapper(properties : Properties) {
   def send : Unit  = Transport send message
 
   def baseMessage = message
+
+  def createSession(prop : Properties) : Session = Session.getDefaultInstance(prop.properties)
 }
 
 object MimeMessageWrapper {
   def apply(properties : Properties) = new MimeMessageWrapper(properties)
+}
+
+trait AuthentificationWrapper extends MimeMessageWrapper {
+  import javax.mail.{Session, PasswordAuthentication}
+
+  override def createSession(prop : Properties) = {
+    Session.getInstance(prop.properties,
+      new javax.mail.Authenticator() {
+        override def getPasswordAuthentication() : PasswordAuthentication = {
+          return new PasswordAuthentication(prop.properties("mail.username"), prop.properties("mail.password"))
+        }
+      })
+  }
 }
