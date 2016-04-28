@@ -1,14 +1,14 @@
 package builders.imperativeBuilder
 
 import builders.dynamicBuilder.Contact
-import utils.MimeMessageWrapper
+import utils.{MimeMessageWrapper, Properties}
 import scala.xml.Elem
 
 /**
   * Created by Greg on 27/04/16.
   */
-class SimpleMail  {
-  val message = new MimeMessageWrapper()
+class SimpleMail(properties : Properties)  {
+  val message = new MimeMessageWrapper(properties)
 
   def to(to: String) = {
     message.to(to); this}
@@ -47,6 +47,8 @@ class SimpleMail  {
 }
 
 object SimpleMail {
+  def apply(properties : Properties) = new SimpleMail(properties)
+  /*
   def to(to: String)      = new SimpleMail().to(to)
   def to(to: Contact)     = new SimpleMail().to(to)
   def cc(cc: String)      = new SimpleMail().cc(cc)
@@ -59,4 +61,5 @@ object SimpleMail {
   def withSubject(subject: String)  = new SimpleMail().withSubject(subject)
   def withContent(content: Elem)    = new SimpleMail().withContent(content)
   def withContent(content: String)  = new SimpleMail().withContent(content)
+  */
 }

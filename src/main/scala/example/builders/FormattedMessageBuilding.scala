@@ -9,8 +9,10 @@ object FormattedMessageBuilding extends App {
   val Leo  = Contact withName "Léonard" andEmail "leonard.julemont@gmaiL.com"
   val Me = Contact withName "Pierre" andEmail "pierre@test.com"
 
+  val properties = Properties add("mail.smtp.host" := "localhost") add("mail.smtp.port" := "1025")
+
   formatMessage {contact =>
-    SimpleMail to contact from Me withSubject {
+    SimpleMail(properties) to contact from Me withSubject {
       "Hello " + contact("name")
     } withContent {
       <html>
