@@ -9,11 +9,11 @@ import scala.xml.Elem
 trait ImplicitMimeMessageBuilder {
   implicit val msg : MimeMessageWrapper = MimeMessageWrapper()
 
-  def to(to : String*)            (implicit msg : MimeMessageWrapper) = msg to to
-  def cc(cc : String*)            (implicit msg : MimeMessageWrapper) = msg cc cc
-  def bcc(bcc : String*)          (implicit msg : MimeMessageWrapper) = msg bcc bcc
+  def to(to : String*)            (implicit msg : MimeMessageWrapper) = msg to(to:_*)
+  def cc(cc : String*)            (implicit msg : MimeMessageWrapper) = msg cc(cc:_*)
+  def bcc(bcc : String*)          (implicit msg : MimeMessageWrapper) = msg bcc(bcc:_*)
 
-  def from(from : String*)        (implicit msg : MimeMessageWrapper) = msg from from
+  def from(from : String*)        (implicit msg : MimeMessageWrapper) = msg from(from:_*)
   def subject(subject : String)   (implicit msg : MimeMessageWrapper) = msg subject subject
 
   def content(content : Elem)     (implicit msg : MimeMessageWrapper) = msg content content

@@ -6,6 +6,8 @@ import javax.mail.internet.InternetAddress
 import scala.collection.mutable
 import scala.collection.mutable.ListBuffer
 
+import builders.dynamicBuilder.Contact
+
 object Utils {
 
   /** Create an array of InternetAddress from a sequence of strings
@@ -23,5 +25,11 @@ object Utils {
     val props = new Properties()
     map foreach { case (key, value) => props put(key, value) }
     props
+  }
+
+  def formatMessage(body: Contact => Unit) = new {
+    def to(contacts : List[Contact]) : Unit = {
+      contacts.foreach(body)
+    }
   }
 }
