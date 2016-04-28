@@ -8,43 +8,42 @@ import scala.collection.mutable
 /**
   * Created by Greg on 27/04/16.
   */
-class SimpleMail(properties : mutable.Map[String, String])  {
-  val message = new MimeMessageWrapper(properties)
-
+class SimpleMail(properties : mutable.Map[String, String],
+                 mimeMsgWrapper : MimeMessageWrapper = new MimeMessageWrapper(defaultProperties)) { // Expose it for Mocking in tests.
   def to(to: String) = {
-    message.to(to); this}
+    mimeMsgWrapper.to(to); this}
 
   def to(to: Contact) = {
-    message.to(to); this}
+    mimeMsgWrapper.to(to); this}
 
   def cc(cc: String) = {
-    message.cc(cc); this}
+    mimeMsgWrapper.cc(cc); this}
 
   def cc(cc: Contact) = {
-    message.cc(cc); this}
+    mimeMsgWrapper.cc(cc); this}
 
   def bcc(bcc: String) = {
-    message.bcc(bcc); this}
+    mimeMsgWrapper.bcc(bcc); this}
 
   def bcc(bcc: Contact) = {
-    message.bcc(bcc); this}
+    mimeMsgWrapper.bcc(bcc); this}
 
   def from(from: String) = {
-    message.from(from); this}
+    mimeMsgWrapper.from(from); this}
 
   def from(from: Contact) = {
-    message.from(from); this}
+    mimeMsgWrapper.from(from); this}
 
   def withSubject(subject: String) = {
-    message.subject(subject); this}
+    mimeMsgWrapper.subject(subject); this}
 
   def withContent(content: Elem) = {
-    message.content(content); this}
+    mimeMsgWrapper.content(content); this}
 
   def withContent(content: String) = {
-    message.content(content); this}
+    mimeMsgWrapper.content(content); this}
 
-  def send() = message.send()
+  def send() = mimeMsgWrapper.send()
 }
 
 object SimpleMail {
