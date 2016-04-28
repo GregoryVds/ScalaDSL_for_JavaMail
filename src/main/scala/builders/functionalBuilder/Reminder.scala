@@ -16,7 +16,7 @@ import cronish.dsl._
   * Every.{second, minute, hour}  remind Greg to "Walk the dog"
   * Every.day     remind Greg to "Walk the dog" at "10:00"
   * Every.month   remind Greg to "Walk the dog" at "10:00" on_the "12th"
-  * Every.year    remind Greg to "Walk the dog" at "10:00" on_the "12th" in July
+  * Every.year    remind Greg to "Walk the dog" at "10:00" on_the "12th" of July
   */
 
 trait Reminder {
@@ -45,7 +45,6 @@ trait Reminder {
   // Private Stuff
   case class ReminderWrapper(repPeriod: RepPeriod, contact: Contact, taskString: Task,
                       runTime: RunTime = "", runDay: RunDay = "", runMonth: Month = MonthNone) {
-
     def send() = {
       val mail: SimpleMail = new SimpleMail(utils.defaultProperties) to contact.email withSubject "Reminder" withContent taskString
       var taskDesc = "every " + repPeriod.toString.toLowerCase
@@ -91,7 +90,7 @@ trait Reminder {
   }
 
   implicit class AddMonth(t: RepPeriodToRunDay) {
-    def in(month: Month): RepPeriodToMonth = {
+    def of(month: Month): RepPeriodToMonth = {
       val newT = (t._1, t._2, t._3, t._4, t._5, month)
       newT._1 match {
         case Second | Minute | Hour | Day | Month => invalidCombo

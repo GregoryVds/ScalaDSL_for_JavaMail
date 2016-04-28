@@ -13,7 +13,9 @@ object ImperativeSimpleMailBuilding extends App {
 
   val properties = defaultProperties
 
-  SimpleMail(properties) to Leo cc Greg withSubject {
+  SimpleMail(properties) to Leo cc Greg withSubject "Hi" withContent <h1>Meow</h1> send()
+
+  SimpleMail(properties) from Leo to Greg withSubject {
     "Hello Greg"
   } withContent {
     <html>
