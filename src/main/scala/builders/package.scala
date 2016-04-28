@@ -10,5 +10,5 @@ package object builders extends Reminder {
   type Contact              = dynamicBuilder.Contact
   final val Contact         = dynamicBuilder.Contact
 
-  type ImplicitMailBuilder  = implicitBuilder.ImplicitMimeMessageBuilder
+  type ImplicitMailBuilder  = implicitBuilder.ImplicitMimeMessage
 }

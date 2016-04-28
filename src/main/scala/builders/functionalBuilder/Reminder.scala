@@ -28,12 +28,6 @@ trait Reminder {
   type RepPeriodToRunDay    = (RepPeriod, Contact, Task, RunTime, RunDay)
   type RepPeriodToMonth     = (RepPeriod, Contact, Task, RunTime, RunDay, Month)
 
-  implicit def withRepPeriod2Contact(t: RepPeriod): AddContact      = new AddContact(t)
-  implicit def withContactToTask(t: RepPeriodToContact): AddTask    = new AddTask(t)
-  implicit def withTask2RunTime(t: RepPeriodToTask): AddRunTime     = new AddRunTime(t)
-  implicit def withRunTime2RunDay(t: RepPeriodToRunTime): AddRunDay = new AddRunDay(t)
-  implicit def withRunDay2Month(t: RepPeriodToRunDay): AddMonth     = new AddMonth(t)
-
   implicit def RepPeriodToTask2ReminderWrapper(t: RepPeriodToTask): ReminderWrapper       = new ReminderWrapper(t._1, t._2, t._3)
   implicit def RepPeriodToRunTime2ReminderWrapper(t: RepPeriodToRunTime): ReminderWrapper = new ReminderWrapper(t._1, t._2, t._3, t._4)
   implicit def RepPeriodToRunDay2ReminderWrapper(t: RepPeriodToRunDay): ReminderWrapper   = new ReminderWrapper(t._1, t._2, t._3, t._4, t._5)
@@ -62,11 +56,11 @@ trait Reminder {
     }
   }
 
-  class AddContact(t: RepPeriod) {
+  implicit class AddContact(t: RepPeriod) {
     def remind(contact: Contact): RepPeriodToContact = (t, contact)
   }
 
-  class AddTask(t: RepPeriodToContact) {
+  implicit class AddTask(t: RepPeriodToContact) {
     def to(task: Task): RepPeriodToTask = {
       val newT = (t._1, t._2, task)
       newT._1 match {
@@ -76,7 +70,7 @@ trait Reminder {
     }
   }
 
-  class AddRunTime(t: RepPeriodToTask) {
+  implicit class AddRunTime(t: RepPeriodToTask) {
     def at(time: RunTime): RepPeriodToRunTime = {
       val newT = (t._1, t._2, t._3, time)
       newT._1 match {
@@ -86,7 +80,7 @@ trait Reminder {
     }
   }
 
-  class AddRunDay(t: RepPeriodToRunTime) {
+  implicit class AddRunDay(t: RepPeriodToRunTime) {
     def on_the(day: RunDay): RepPeriodToRunDay = {
       val newT = (t._1, t._2, t._3, t._4, day)
       newT._1 match {
@@ -96,7 +90,7 @@ trait Reminder {
     }
   }
 
-  class AddMonth(t: RepPeriodToRunDay) {
+  implicit class AddMonth(t: RepPeriodToRunDay) {
     def in(month: Month): RepPeriodToMonth = {
       val newT = (t._1, t._2, t._3, t._4, t._5, month)
       newT._1 match {
