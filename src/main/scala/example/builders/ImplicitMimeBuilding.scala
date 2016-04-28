@@ -1,23 +1,23 @@
 package example.builders
 
-import builders.implicitBuilder.ImplicitMimeMessageBuilder
+import builders._
 
-object ImplicitMimeBuilding extends App with ImplicitMimeMessageBuilder {
-  to("greg@gmail.com", "jean@hotmail.com")
-  cc("leonard@gmail.com")
-  bcc("pierre@gmail.com", "thomas@yahoo.com")
+object ImplicitMimeBuilding extends App with ImplicitMailBuilder {
+    to("greg@gmail.com", "jean@hotmail.com")
+    cc("leonard@gmail.com")
+    bcc("pierre@gmail.com", "thomas@yahoo.com")
 
-  from("jony@gmail.com", "marie@gmail.com")
-  subject("My first basic email...")
+    from("jony@gmail.com", "marie@gmail.com")
+    subject("My first basic email...")
 
-  content(
-    <html>
-      <body>
-        Hello there!
-      </body>
-    </html>
-  )
+    content(
+      <html>
+        <body>
+          Hello there!
+        </body>
+      </html>
+    )
 
-  send
-  println("Sent")
+    send()
+    println("Sent")
 }

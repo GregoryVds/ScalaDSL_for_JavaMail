@@ -1,71 +1,61 @@
 package builders.imperativeBuilder
 
-import builders.dynamicBuilder.Contact
-import utils.{MimeMessageWrapper, Properties, AuthentificationWrapper}
+
+import builders._
+import utils._
 import scala.xml.Elem
+import scala.collection.mutable
 
 /**
   * Created by Greg on 27/04/16.
   */
-class SimpleMail(properties : Properties)  {
-  val message = createMessage(properties)
+class SimpleMail(properties : mutable.Map[String, String]) {
 
-  def createMessage(properties : Properties) = new MimeMessageWrapper(properties)
+  var mimeMsgWrapper : MimeMessageWrapper = createMessage(properties)
+
+  def createMessage(properties : mutable.Map[String, String]) = new MimeMessageWrapper(properties)
 
   def to(to: String) = {
-    message.to(to); this}
+    mimeMsgWrapper.to(to); this}
 
   def to(to: Contact) = {
-    message.to(to); this}
+    mimeMsgWrapper.to(to); this}
 
   def cc(cc: String) = {
-    message.cc(cc); this}
+    mimeMsgWrapper.cc(cc); this}
 
   def cc(cc: Contact) = {
-    message.cc(cc); this}
+    mimeMsgWrapper.cc(cc); this}
 
   def bcc(bcc: String) = {
-    message.bcc(bcc); this}
+    mimeMsgWrapper.bcc(bcc); this}
 
   def bcc(bcc: Contact) = {
-    message.bcc(bcc); this}
+    mimeMsgWrapper.bcc(bcc); this}
 
   def from(from: String) = {
-    message.from(from); this}
+    mimeMsgWrapper.from(from); this}
 
   def from(from: Contact) = {
-    message.from(from); this}
+    mimeMsgWrapper.from(from); this}
 
   def withSubject(subject: String) = {
-    message.subject(subject); this}
+    mimeMsgWrapper.subject(subject); this}
 
   def withContent(content: Elem) = {
-    message.content(content); this}
+    mimeMsgWrapper.content(content); this}
 
   def withContent(content: String) = {
-    message.content(content); this}
+    mimeMsgWrapper.content(content); this}
 
-  def send = message.send
+  def send() = mimeMsgWrapper.send()
 }
 
 object SimpleMail {
-  def apply(properties : Properties) = new SimpleMail(properties)
-  /*
-  def to(to: String)      = new SimpleMail().to(to)
-  def to(to: Contact)     = new SimpleMail().to(to)
-  def cc(cc: String)      = new SimpleMail().cc(cc)
-  def cc(cc: Contact)     = new SimpleMail().cc(cc)
-  def bcc(bcc: String)    = new SimpleMail().bcc(bcc)
-  def bcc(bcc: Contact)   = new SimpleMail().bcc(bcc)
-  def from(from: String)  = new SimpleMail().from(from)
-  def from(from: Contact) = new SimpleMail().from(from)
-
-  def withSubject(subject: String)  = new SimpleMail().withSubject(subject)
-  def withContent(content: Elem)    = new SimpleMail().withContent(content)
-  def withContent(content: String)  = new SimpleMail().withContent(content)
-  */
+  def apply(properties : mutable.Map[String, String]) = new SimpleMail(properties)
 }
 
+
 trait Authentification extends SimpleMail {
-  override def createMessage(properties : Properties) = new MimeMessageWrapper(properties) with AuthentificationWrapper
+  override def createMessage(properties : mutable.Map[String, String]) = new MimeMessageWrapper(properties) with AuthentificationWrapper
 }
