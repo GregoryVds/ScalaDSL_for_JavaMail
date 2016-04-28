@@ -4,6 +4,7 @@ import javax.mail.internet.InternetAddress
 
 import scala.collection.mutable
 import scala.collection.mutable.ListBuffer
+import builders.dynamicBuilder.Contact
 
 package object utils {
 
@@ -24,5 +25,9 @@ package object utils {
     props
   }
 
-
+  def formatMessage(body: Contact => Unit) = new {
+    def to(contacts : List[Contact]) : Unit = {
+      contacts.foreach(body)
+    }
+  }
 }
