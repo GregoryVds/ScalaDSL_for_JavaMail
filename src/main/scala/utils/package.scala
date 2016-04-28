@@ -30,4 +30,8 @@ package object utils {
       contacts.foreach(body)
     }
   }
+
+  implicit class StringForKey(key: String) {
+    def := (value : String) : (String, String) = (key,value)
+  }
 }

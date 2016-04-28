@@ -1,13 +1,16 @@
 package builders.implicitBuilder
 
-import utils.MimeMessageWrapper
+import utils._
 import scala.xml.Elem
 
 /**
   * Created by Greg on 27/04/16.
   */
 trait ImplicitMimeMessageBuilder {
-  implicit val msg : MimeMessageWrapper = MimeMessageWrapper()
+  // Default properties
+  val prop = Properties add("mail.smtp.host" := "localhost") add("mail.smtp.port" := "1025")
+  
+  implicit val msg : MimeMessageWrapper = MimeMessageWrapper(prop)
 
   def to(to : String*)            (implicit msg : MimeMessageWrapper) = msg to(to:_*)
   def cc(cc : String*)            (implicit msg : MimeMessageWrapper) = msg cc(cc:_*)
