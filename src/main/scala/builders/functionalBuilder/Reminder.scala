@@ -45,7 +45,7 @@ trait Reminder {
   // Private Stuff
   case class ReminderWrapper(repPeriod: RepPeriod, contact: Contact, taskString: Task,
                       runTime: RunTime = "", runDay: RunDay = "", runMonth: Month = MonthNone) {
-    def send() = {
+    def schedule() = {
       val mail: SimpleMail = new SimpleMail(utils.defaultProperties) to contact.email withSubject "Reminder" withContent taskString
       var taskDesc = "every " + repPeriod.toString.toLowerCase
       if (!runTime.isEmpty)      taskDesc += " at " + runTime

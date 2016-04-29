@@ -18,5 +18,5 @@ object FunctionalReminderBuilding extends App {
   Every.year    remind Greg to "Walk the dog" at "10:00" on_the "12th" of July
 
   // To actually send, call send() on the returned Tuple
-  Every.year remind Greg to "Walk the dog" at "10:00" on_the "12th" of July send()
+  Every.year remind Greg to "Walk the dog" at "10:00" on_the "12th" of July schedule()
 }
