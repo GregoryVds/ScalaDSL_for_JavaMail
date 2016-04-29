@@ -23,6 +23,7 @@ trait Types {
   case object January   extends Month
   case object February  extends Month
   case object March     extends Month
+  case object April     extends Month
   case object May       extends Month
   case object June      extends Month
   case object July      extends Month
