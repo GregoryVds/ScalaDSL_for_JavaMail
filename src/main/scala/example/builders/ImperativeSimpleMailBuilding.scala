@@ -1,7 +1,7 @@
 package example.builders
 
 import builders._
-import builders.imperativeBuilder.Authentification
+import builders.imperativeBuilder.Authentication
 import utils._
 import scala.collection.mutable
 
@@ -29,6 +29,6 @@ object ImperativeSimpleMailBuilding extends App {
 
   val properties2 = mutable.Map("mail.smtp.host" -> "localhost", "mail.smtp.port" -> "1025", "mail.smtp.auth" -> "true", "mail.username" -> "test", "mail.password" -> "test")
 
-  val mail = new SimpleMail(properties2) with Authentification to Leo from Greg withSubject "Hello Greg" withContent "Hello World!"
+  val mail = new SimpleMail(properties2) with Authentication to Leo from Greg withSubject "Hello Greg" withContent "Hello World!"
   mail.send()
 }

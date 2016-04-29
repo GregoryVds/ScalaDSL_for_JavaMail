@@ -55,7 +55,6 @@ object SimpleMail {
   def apply(properties : mutable.Map[String, String]) = new SimpleMail(properties)
 }
 
-
-trait Authentification extends SimpleMail {
-  override def createMessage(properties : mutable.Map[String, String]) = new MimeMessageWrapper(properties) with AuthentificationWrapper
+trait Authentication extends SimpleMail {
+  override def createMessage(properties : mutable.Map[String, String]) = new MimeMessageWrapper(properties) with AuthenticationWrapper
 }

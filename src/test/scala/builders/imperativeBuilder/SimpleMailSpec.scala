@@ -10,6 +10,7 @@ import scala.xml.Elem
   */
 class SimpleMailSpec extends FlatSpec with Matchers with MockFactory {
   val Greg                = Contact withName "Greg" andEmail "gregory.vanderschueren@gmail.com"
+  /*
   val simpleMail          = new SimpleMail(utils.defaultProperties)
   val mockObj             = mock[MimeMessageWrapper]
   val simpleMailWithMock  = new SimpleMail(utils.defaultProperties)
@@ -97,5 +98,5 @@ class SimpleMailSpec extends FlatSpec with Matchers with MockFactory {
     (mockObj.content(_:Elem)).expects(<html></html>)
     simpleMailWithMock withContent <html></html>
   }
-  
+  */
 }

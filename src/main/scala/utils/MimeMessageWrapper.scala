@@ -37,7 +37,7 @@ object MimeMessageWrapper {
   def apply(properties : mutable.Map[String, String]) = new MimeMessageWrapper(properties)
 }
 
-trait AuthentificationWrapper extends MimeMessageWrapper {
+trait AuthenticationWrapper extends MimeMessageWrapper {
   import javax.mail.{Session, PasswordAuthentication}
 
   override def createSession(properties : mutable.Map[String, String]) = {
