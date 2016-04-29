@@ -31,7 +31,7 @@ class ReminderSpec extends FlatSpec with Matchers {
   }
 
   it should "be sendable" in {
-    "Every.second remind Greg to \"DoSomething\" send()" should compile
+    "Every.second remind Greg to \"DoSomething\" schedule()" should compile
   }
 
   "A RepPeriodToRunTime" should "be buildable from a RepPeriodToTask" in {
@@ -45,7 +45,7 @@ class ReminderSpec extends FlatSpec with Matchers {
   }
 
   it should "be sendable" in {
-    "Every.day remind Greg to \"DoSomething\" at \"11:00\" send()" should compile
+    "Every.day remind Greg to \"DoSomething\" at \"11:00\" schedule()" should compile
   }
 
   "A RepPeriodToRunDay" should "be buildable from a RepPeriodToRunTime" in {
@@ -57,7 +57,7 @@ class ReminderSpec extends FlatSpec with Matchers {
   }
 
   it should "be sendable" in {
-    "Every.month remind Greg to \"DoSomething\" at \"11:00\" on_the \"12th\" send()" should compile
+    "Every.month remind Greg to \"DoSomething\" at \"11:00\" on_the \"12th\" schedule()" should compile
   }
 
   "A RepPeriodToMonth" should "be buildable from a RepPeriodToRunDay" in {
@@ -69,6 +69,6 @@ class ReminderSpec extends FlatSpec with Matchers {
   }
 
   it should "be sendable" in {
-    "Every.year remind Greg to \"DoSomething\" at \"11:00\" on_the \"12th\" of March send()" should compile
+    "Every.year remind Greg to \"DoSomething\" at \"11:00\" on_the \"12th\" of March schedule()" should compile
   }
 }
