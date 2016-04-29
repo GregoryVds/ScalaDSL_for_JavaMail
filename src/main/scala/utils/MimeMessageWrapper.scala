@@ -29,8 +29,7 @@ class MimeMessageWrapper(properties : mutable.Map[String, String] = utils.defaul
 
   /* To access base Java object */
   def baseMessage = mimeMsg
-
-  def createSession(properties : mutable.Map[String, String]) : Session = Session.getDefaultInstance(properties)
+  def createSession(arg : mutable.Map[String, String]) : Session = Session.getDefaultInstance(arg)
 }
 
 object MimeMessageWrapper {

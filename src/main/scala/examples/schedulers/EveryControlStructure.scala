@@ -1,4 +1,4 @@
-package examples.scheduler
+package examples.schedulers
 
 import builders._
 import schedulers._

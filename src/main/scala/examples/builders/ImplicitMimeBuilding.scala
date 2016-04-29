@@ -19,5 +19,4 @@ object ImplicitMimeBuilding extends App with ImplicitMailBuilder {
     )
 
     send()
-    println("Sent")
 }
