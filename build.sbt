@@ -25,9 +25,9 @@ resolvers += "Artima Maven Repository" at "http://repo.artima.com/releases"
 
 mainClass in (Compile, run) := Some("example.SendMailExample")
 
-fullRunTask(runDynamicContact, Compile, "example.builders.DynamicContactBuilding")
-fullRunTask(runFormattedMessage, Compile, "example.builders.FormattedMessageBuilding")
-fullRunTask(runFunctionalReminder, Compile, "example.builders.FunctionalReminderBuilding")
-fullRunTask(runImperativeSimpleMail, Compile, "example.builders.ImperativeSimpleMailBuilding")
-fullRunTask(runImplicitMime, Compile, "example.builders.ImplicitMimeBuilding")
-fullRunTask(runEveryControlStructure, Compile, "example.scheduler.EveryControlStructure")
+fullRunTask(runDynamicContact, Compile, "examples.builders.DynamicContactBuilding")
+fullRunTask(runFormattedMessage, Compile, "examples.builders.FormattedMessageBuilding")
+fullRunTask(runFunctionalReminder, Compile, "examples.builders.FunctionalReminderBuilding")
+fullRunTask(runImperativeSimpleMail, Compile, "examples.builders.ImperativeSimpleMailBuilding")
+fullRunTask(runImplicitMime, Compile, "examples.builders.ImplicitMimeBuilding")
+fullRunTask(runEveryControlStructure, Compile, "examples.schedulers.EveryControlStructure")
