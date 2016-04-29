@@ -3,7 +3,7 @@ package examples.builders
 import builders._
 
 /**
-  * Created by Greg on 27/04/16.
+  * @author : Léonard Julémont and Grégory Vander Schueren
   */
 
 object DynamicContactBuilding extends App {

@@ -3,6 +3,9 @@ package examples.builders
 import builders._
 import utils._
 
+/**
+  * @author : Léonard Julémont and Grégory Vander Schueren
+  */
 object FormattedMessageBuilding extends App {
   val Greg  = Contact withName "Greg"     andEmail "gregory.vanderschueren@gmail.com"
   val Leo   = Contact withName "Léonard"  andEmail "leonard.julemont@gmaiL.com"

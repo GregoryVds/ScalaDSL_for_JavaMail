@@ -1,7 +1,9 @@
 package examples.builders
 
 import builders._
-
+/**
+  * @author : Léonard Julémont and Grégory Vander Schueren
+  */
 object ImplicitMimeBuilding extends App with ImplicitMailBuilder {
   /*
   The implicit builder is also very simple: it provides a Trait

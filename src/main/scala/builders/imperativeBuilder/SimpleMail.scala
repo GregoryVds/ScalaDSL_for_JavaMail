@@ -7,7 +7,7 @@ import scala.xml.Elem
 import scala.collection.mutable
 
 /**
-  * Created by Greg on 27/04/16.
+  * @author : Léonard Julémont and Grégory Vander Schueren
   */
 class SimpleMail(properties : mutable.Map[String, String]) {
 

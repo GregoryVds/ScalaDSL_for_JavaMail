@@ -1,7 +1,7 @@
 package utils
 
 /**
-  * Created by Greg on 27/04/16.
+  * @author : Léonard Julémont and Grégory Vander Schueren
   */
 trait Types {
   type Task      = String

@@ -6,7 +6,7 @@ import org.scalatest.{Matchers, FlatSpec}
 import org.scalamock.scalatest._
 
 /**
-  * Created by Greg on 28/04/16.
+  * @author : Léonard Julémont and Grégory Vander Schueren
   */
 class SimpleMailSpec extends FlatSpec with Matchers with MockFactory {
   val Greg                = Contact withName "Greg" andEmail "gregory.vanderschueren@gmail.com"

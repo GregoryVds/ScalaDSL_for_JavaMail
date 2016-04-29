@@ -5,7 +5,7 @@ import utils._
 import cronish.dsl._
 
 /**
-  * Created by Greg on 22/04/16.
+  * @author : Léonard Julémont and Grégory Vander Schueren
   *
   * FUNCTIONAL BUILDER:
   * Nothing extraordinary here, but only an interesting functional way to build an object.

@@ -5,7 +5,7 @@ import schedulers._
 import utils._
 
 /**
-  * Created by Greg on 28/04/16.
+  * @author : Léonard Julémont and Grégory Vander Schueren
   */
 object EveryControlStructure extends App {
   val Greg = Contact withName "Greg" andEmail "greg@gmail.com" andDog "Chucky" andAge "25"

@@ -4,6 +4,9 @@ import scala.collection.mutable
 import scala.collection.mutable.ListBuffer
 import builders._
 
+/**
+  * @author : Léonard Julémont and Grégory Vander Schueren
+  */
 package object utils extends Types {
 
   /** Create an array of InternetAddress from a sequence of strings

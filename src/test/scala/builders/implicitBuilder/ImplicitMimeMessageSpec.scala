@@ -7,7 +7,7 @@ import org.scalamock.scalatest.MockFactory
 import org.scalatest.{Matchers, FlatSpec}
 
 /**
-  * Created by Greg on 28/04/16.
+  * @author : Léonard Julémont and Grégory Vander Schueren
   */
 class ImplicitMimeMessageSpec extends FlatSpec with Matchers with MockFactory with ImplicitMimeMessage {
   val Greg = Contact withName "Greg" andEmail "gregory.vanderschueren@gmail.com"

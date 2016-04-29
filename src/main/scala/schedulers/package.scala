@@ -1,5 +1,5 @@
 /**
-  * Created by Greg on 28/04/16.
+  * @author : Léonard Julémont and Grégory Vander Schueren
   */
 
 import utils._

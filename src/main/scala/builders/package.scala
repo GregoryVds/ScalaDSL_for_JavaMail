@@ -1,7 +1,7 @@
 import builders.functionalBuilder.Reminder
 
 /**
-  * Created by Greg on 28/04/16.
+  * @author : Léonard Julémont and Grégory Vander Schueren
   */
 package object builders extends Reminder {
   type SimpleMail           = imperativeBuilder.SimpleMail

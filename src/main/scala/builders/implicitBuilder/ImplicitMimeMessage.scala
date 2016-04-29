@@ -4,7 +4,7 @@ import utils._
 import scala.xml.Elem
 
 /**
-  * Created by Greg on 27/04/16.
+  * @author : Léonard Julémont and Grégory Vander Schueren
   */
 
 trait ImplicitMimeMessage {

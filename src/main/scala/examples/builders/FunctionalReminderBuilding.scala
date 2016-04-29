@@ -4,7 +4,7 @@ import builders._
 import utils._
 
 /**
-  * Created by Greg on 22/04/16.
+  * @author : Léonard Julémont and Grégory Vander Schueren
   */
 object FunctionalReminderBuilding extends App {
   val Greg = Contact withName "Greg" andEmail "gregory.vanderschueren@gmail.com"

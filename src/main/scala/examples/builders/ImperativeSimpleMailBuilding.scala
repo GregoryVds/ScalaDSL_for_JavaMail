@@ -6,7 +6,7 @@ import utils._
 import scala.collection.mutable
 
 /**
-  * Created by Greg on 22/04/16.
+  * @author : Léonard Julémont and Grégory Vander Schueren
   */
 object ImperativeSimpleMailBuilding extends App {
   val Greg = Contact withName "Greg"    andEmail "gregory.vanderschueren@gmail.com"

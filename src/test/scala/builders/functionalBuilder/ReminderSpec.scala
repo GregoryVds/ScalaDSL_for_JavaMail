@@ -4,7 +4,7 @@ import utils._
 import org.scalatest.{Matchers, FlatSpec}
 
 /**
-  * Created by Greg on 28/04/16.
+  * @author : Léonard Julémont and Grégory Vander Schueren
   */
 class ReminderSpec extends FlatSpec with Matchers {
   val Greg = Contact withName "Greg" andEmail "gregory.vanderschueren@gmail.com"

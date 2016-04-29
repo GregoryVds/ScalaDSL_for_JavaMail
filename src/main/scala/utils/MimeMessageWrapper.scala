@@ -5,7 +5,7 @@ import scala.collection.mutable
 import scala.xml.Elem
 
 /**
-  * Created by Greg on 27/04/16.
+  * @author : Léonard Julémont and Grégory Vander Schueren
   */
 class MimeMessageWrapper(properties : mutable.Map[String, String] = utils.defaultProperties) {
   import javax.mail.Message.RecipientType
