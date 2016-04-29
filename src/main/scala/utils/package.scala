@@ -29,9 +29,5 @@ package object utils extends Types {
     }
   }
 
-  implicit class StringForKey(key: String) {
-    def := (value : String) : (String, String) = (key,value)
-  }
-
   var defaultProperties = mutable.Map("mail.smtp.host" -> "localhost", "mail.smtp.port" -> "1025")
 }

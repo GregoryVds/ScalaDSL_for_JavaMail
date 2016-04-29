@@ -9,7 +9,9 @@ trait Types {
   type RunDay    = String
   type RunMonth  = String
 
-  sealed trait RepPeriod
+  sealed trait AllPeriod
+
+  sealed trait RepPeriod extends AllPeriod
   case object Second  extends RepPeriod
   case object Minute  extends RepPeriod
   case object Hour    extends RepPeriod
@@ -17,7 +19,7 @@ trait Types {
   case object Month   extends RepPeriod
   case object Year    extends RepPeriod
 
-  sealed trait Month
+  sealed trait Month extends AllPeriod
   case object January   extends Month
   case object February  extends Month
   case object March     extends Month
@@ -31,7 +33,7 @@ trait Types {
   case object December  extends Month
   case object MonthNone extends Month
 
-  sealed trait Day
+  sealed trait Day extends AllPeriod
   case object Monday    extends Day
   case object Tuesday   extends Day
   case object Wednesday extends Day
