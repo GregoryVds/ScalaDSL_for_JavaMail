@@ -3,6 +3,7 @@ lazy val runFormattedMessage      = taskKey[Unit]("Run the FormattedMessage DSL 
 lazy val runFunctionalReminder    = taskKey[Unit]("Run the FunctionalReminder DSL example.")
 lazy val runImperativeSimpleMail  = taskKey[Unit]("Run the ImperativeSimpleMail DSL example.")
 lazy val runImplicitMime          = taskKey[Unit]("Run the ImplicitMime DSL example.")
+lazy val runEveryControlStructure         = taskKey[Unit]("Run the EveryControlStructure DSL example.")
 
 name := "dsl-project-2016"
 
@@ -29,3 +30,4 @@ fullRunTask(runFormattedMessage, Compile, "example.builders.FormattedMessageBuil
 fullRunTask(runFunctionalReminder, Compile, "example.builders.FunctionalReminderBuilding")
 fullRunTask(runImperativeSimpleMail, Compile, "example.builders.ImperativeSimpleMailBuilding")
 fullRunTask(runImplicitMime, Compile, "example.builders.ImplicitMimeBuilding")
+fullRunTask(runEveryControlStructure, Compile, "example.scheduler.EveryControlStructure")
