@@ -1,7 +1,7 @@
-package example.scheduler
+package examples.scheduler
 
 import builders._
-import scheduler._
+import schedulers._
 import utils._
 
 /**

@@ -5,7 +5,7 @@
 import utils._
 import cronish.dsl._
 
-package object scheduler {
+package object schedulers {
 
   def every(repPeriod: RepPeriod)(body : => Unit) = {
     val t = task { body }

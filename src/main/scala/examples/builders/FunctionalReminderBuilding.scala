@@ -1,4 +1,4 @@
-package example.builders
+package examples.builders
 
 import builders._
 import utils._
