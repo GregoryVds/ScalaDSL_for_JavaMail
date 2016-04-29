@@ -5,6 +5,9 @@ import utils._
 
 /**
   * @author : Léonard Julémont and Grégory Vander Schueren
+  *
+  * Presents the way to use the construct 'formatMessage' which allows to send
+  *  a formatted message to each contact in a list. 
   */
 object FormattedMessageBuilding extends App {
   val Greg  = Contact withName "Greg"     andEmail "gregory.vanderschueren@gmail.com"

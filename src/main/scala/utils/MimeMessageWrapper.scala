@@ -6,13 +6,16 @@ import scala.xml.Elem
 
 /**
   * @author : Léonard Julémont and Grégory Vander Schueren
+  *
+  * Wrapper of javax.mail.internet.MimeMessage. Provides multiple methods to facilitate
+  *  the use of javax.mail.internet.MimeMessage.
   */
 class MimeMessageWrapper(properties : mutable.Map[String, String] = utils.defaultProperties) {
   import javax.mail.Message.RecipientType
   import javax.mail.{Session, Transport}
 
   val session = createSession(properties)
-  val mimeMsg = new javax.mail.internet.MimeMessage(session)
+  val mimeMsg = new javax.mail.internet.MimeMessage(session) // The actual MimeMessage
 
   def to(to : String*)          : Unit = mimeMsg addRecipients (RecipientType.TO, seqToAddresses(to))
   def to(contact: Contact)      : Unit = to(contact.email)
@@ -36,6 +39,13 @@ object MimeMessageWrapper {
   def apply(properties : mutable.Map[String, String]) = new MimeMessageWrapper(properties)
 }
 
+/*
+ * Allows the authentication during the creation of the Session.
+ *
+ * The property asking for authentication must be present in 'properties'.
+ *  'mail.username' and 'mail.password' must also be present in 'properties' and
+ *  must be valid creditentials to connect on the host provided in 'properties'.
+ */
 trait AuthenticationWrapper extends MimeMessageWrapper {
   import javax.mail.{Session, PasswordAuthentication}
 

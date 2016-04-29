@@ -5,6 +5,15 @@ import scala.language.dynamics
 
 /**
   * @author : Léonard Julémont and Grégory Vander Schueren
+  *
+  * This class reprent a contact.
+  *
+  * By mixing the scala Dynamic trait we can catches all the messages
+  *  that the target object does not have and access instance members that are
+  *  not statically defined on the class.
+  *
+  * Fields defined dynamically must begin by : 'with' or 'and'.
+  *  ex : withDog, withName, andEmail, ...
   */
 
 class Contact extends Dynamic {

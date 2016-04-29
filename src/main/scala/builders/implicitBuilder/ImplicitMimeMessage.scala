@@ -5,6 +5,8 @@ import scala.xml.Elem
 
 /**
   * @author : Léonard Julémont and Grégory Vander Schueren
+  *
+  * Allow the DSL user to create and send a mail in an implicit way. 
   */
 
 trait ImplicitMimeMessage {

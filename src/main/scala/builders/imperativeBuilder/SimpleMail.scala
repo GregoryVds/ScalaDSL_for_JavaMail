@@ -8,6 +8,8 @@ import scala.collection.mutable
 
 /**
   * @author : Léonard Julémont and Grégory Vander Schueren
+  *
+  * Hight level wrapper around the MimeMessageWrapper to be used by the DSL user.
   */
 class SimpleMail(properties : mutable.Map[String, String]) {
 
@@ -55,6 +57,9 @@ object SimpleMail {
   def apply(properties : mutable.Map[String, String]) = new SimpleMail(properties)
 }
 
+/*
+ * Allows the authentication during the creation of the Session. 
+ */
 trait Authentication extends SimpleMail {
   override def createMessage(properties : mutable.Map[String, String]) = new MimeMessageWrapper(properties) with AuthenticationWrapper
 }

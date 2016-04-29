@@ -26,6 +26,10 @@ package object utils extends Types {
     props
   }
 
+  /*
+   * Custom construct to allow the DSL user to send a formatted message to a
+   *   list of contacts. The message is then personnalized for each contact.
+   */
   def formatMessage(body: Contact => Unit) = new {
     def to(contacts : List[Contact]) : Unit = {
       contacts.foreach(body)
