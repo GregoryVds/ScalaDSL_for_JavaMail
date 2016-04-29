@@ -58,8 +58,22 @@ object SimpleMail {
 }
 
 /*
- * Allows the authentication during the creation of the Session. 
+ * Allows the authentication during the creation of the Session.
  */
 trait Authentication extends SimpleMail {
-  override def createMessage(properties : mutable.Map[String, String]) = new MimeMessageWrapper(properties) with AuthenticationWrapper
+  override def createMessage(properties : mutable.Map[String, String]) = {
+    if(super.createMessage(properties).isInstanceOf[Signature]) new MimeMessageWrapper(properties) with SignatureWrapper with AuthenticationWrapper
+    else new MimeMessageWrapper(properties) with AuthenticationWrapper
+  }
 }
+
+/*
+ * Allows to automatically sign the email with the signature field contained in
+ *  the 'Conact' object of the sender.
+ */
+ trait Signature extends SimpleMail {
+   override def createMessage(properties : mutable.Map[String, String]) = {
+     if(super.createMessage(properties).isInstanceOf[Authentication]) new MimeMessageWrapper(properties) with AuthenticationWrapper with SignatureWrapper
+     else new MimeMessageWrapper(properties) with SignatureWrapper
+   }
+ }

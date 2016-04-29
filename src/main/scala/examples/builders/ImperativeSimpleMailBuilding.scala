@@ -1,7 +1,7 @@
 package examples.builders
 
 import builders._
-import builders.imperativeBuilder.Authentication
+import builders.imperativeBuilder.{Authentication, Signature}
 import utils._
 import scala.collection.mutable
 
@@ -9,7 +9,7 @@ import scala.collection.mutable
   * @author : Léonard Julémont and Grégory Vander Schueren
   */
 object ImperativeSimpleMailBuilding extends App {
-  val Greg = Contact withName "Greg"    andEmail "gregory.vanderschueren@gmail.com"
+  val Greg = Contact withName "Greg"    andEmail "gregory.vanderschueren@gmail.com" andSignature "Grégory Vander Schueren \n\n phone : +32000000000"
   val Leo  = Contact withName "Léonard" andEmail "leonard.julemont@gmaiL.com"
   val properties = defaultProperties
 
@@ -53,6 +53,6 @@ object ImperativeSimpleMailBuilding extends App {
     "mail.password" -> "test"
   )
 
-  val mail = new SimpleMail(properties2) with Authentication to Leo from Greg withSubject "Hello Greg" withContent "Hello World!"
+  val mail = new SimpleMail(properties2) with Authentication with Signature to Leo from Greg withSubject "Hello Leo" withContent "Hello World!"
   mail.send()
 }
